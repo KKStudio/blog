@@ -35,7 +35,7 @@
 				@foreach($posts as $k => $post)
 				<tr>
 					<td>{{ $post->id }}</td>
-					<td>{{ $post->name }}</td>
+					<td>{{ $post->title }}</td>
 					<td>{{ $post->published }}</td>
 					<td>
 						<a href="{{ url('admin/blog/' . $post->slug . '/edit') }}" class="btn btn-sm btn-primary">edit</a>
