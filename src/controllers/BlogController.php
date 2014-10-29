@@ -23,6 +23,14 @@ class BlogController extends Controller {
 
 	// Administration
 
+	public function admin()
+	{
+		$posts = m('Blog')->posts();
+
+		return \View::make('blog::admin')->with('posts', $posts);
+	}
+
+
 	public function create() 
 	{
 		return \View::make('blog::create');
