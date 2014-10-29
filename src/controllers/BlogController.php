@@ -105,12 +105,12 @@ class BlogController extends Controller {
 			$image_name = \Str::random(32) . \Str::random(32) . '.png';
 			$image = \Image::make(\Input::file('image')->getRealPath());
 
-            $image->save(public_path('assets/portfolio/' . $image_name));
+            $image->save(public_path('assets/blog/' . $image_name));
 
             $callback = function ($constraint) { $constraint->upsize(); };
 			$image->widen(320, $callback)->heighten(180, $callback);
 
-            $image->save(public_path('assets/portfolio/thumb_' . $image_name));
+            $image->save(public_path('assets/blog/thumb_' . $image_name));
 
             $post->image = $image_name;
 
