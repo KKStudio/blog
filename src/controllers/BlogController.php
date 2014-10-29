@@ -69,7 +69,7 @@ class BlogController extends Controller {
 
 		}
 
-		$post = $repo->create($slug, $name, $content, $tags, $image, $published);
+		$post = $repo->create($slug, $title, $content, $tags, $image, $published);
 
 		\Flash::success('Post created successfully.');
 

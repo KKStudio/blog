@@ -22,12 +22,12 @@ class BlogRepository {
 		return $post;
 	}
 
-	public function create($slug, $name, $content, $tags, $image, $published)
+	public function create($slug, $title, $content, $tags, $image, $published)
 	{
 		return Post::create([
 
 			'slug' => $slug,
-			'name' => $name,
+			'title' => $title,
 			'content' => $content,
 			'tags' => $tags,
 			'image' => $image,
