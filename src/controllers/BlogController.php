@@ -150,7 +150,7 @@ class BlogController extends Controller {
 
 		\Flash::success('Post deleted.');
 
-		return \Redirect::to('blog/portfolio');
+		return \Redirect::to('admin/blog');
 	}
 
 }
