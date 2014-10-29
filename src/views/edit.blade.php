@@ -16,7 +16,7 @@
 			  <div class="fileinput-new thumbnail" style="width: 150px; height: auto;">
 			  	<img src="{{ $post->getThumb() }}">
 			  </div>
-			  <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 100%; height: auto;"></div>
+			  <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 250px; height: auto;"></div>
 			  <div>
 			    <span class="btn btn-default btn-file">
 				    <span class="fileinput-new">Select image</span>
@@ -32,7 +32,7 @@
 
 			<h3>{!! Form::label('content', 'Content') !!}</h3>
 			{!! Form::textarea('content', $post->content, [ 'class' => 'form-control', 'rows' => 10 ]) !!}
-			{!! Form::text('title', $post->title, [ 'class' => 'form-control' ]) !!}
+
 
 			<h3>{!! Form::label('tags', 'Tags') !!}</h3>
 			{!! Form::textarea('tags', $post->tags, [ 'class' => 'form-control', 'rows' => 2 ]) !!}

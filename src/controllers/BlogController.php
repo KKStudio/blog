@@ -88,9 +88,9 @@ class BlogController extends Controller {
 	{
 		$post = $repo->post($slug);
 
-		if(! \Request::get('name')) {
+		if(! \Request::get('title')) {
 
-			\Flash::error('Please provide a name.');
+			\Flash::error('Please provide a title.');
 
 			return \Redirect::back()->withInput();
 
