@@ -9,14 +9,14 @@ class Blog extends \App\Module {
 		$this->repo = new Repositories\BlogRepository;
 	}
 
-	public function posts(BlogRepository $repo) 
+	public function posts() 
 	{
 		$posts = $this->repo->posts();
 
 		return $posts;
 	}
 
-	public function post($slug, BlogRepository $repo) 
+	public function post($slug) 
 	{
 		$post = $this->repo->post($slug);
 
