@@ -30,7 +30,7 @@
 			{!! Form::text('title', '', [ 'class' => 'form-control' ]) !!}
 
 			<h3>{!! Form::label('content', 'Content') !!}</h3>
-			{!! Form::textarea('content', '', [ 'class' => 'form-control', 'rows' => 10 ]) !!}
+			{!! Form::textarea('content', '', [ 'class' => 'editor form-control', 'rows' => 10 ]) !!}
 
 			<h3>{!! Form::label('tags', 'Tags') !!}</h3>
 			{!! Form::textarea('tags', '', [ 'class' => 'form-control', 'rows' => 2 ]) !!}
