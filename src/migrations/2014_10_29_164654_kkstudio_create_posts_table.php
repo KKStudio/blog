@@ -17,12 +17,12 @@ class KkstudioCreatePostsTable extends Migration {
 			$table->increments('id');
 			$table->string('title');
 			$table->string('slug');
-			$table->text('content');
-			$table->text('tags');
-			$table->timestamp('published');
-			$table->string('image');
-			$table->integer('category_id');
-			$table->timestamps();
+			$table->text('content')->nullable();
+			$table->text('tags')->nullable();
+			$table->timestamp('published')->nullable();
+			$table->string('image')->nullable();
+			$table->integer('category_id')->nullable();
+			$table->nullableTimestamps();
 
 		});
 	}
