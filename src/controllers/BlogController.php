@@ -40,7 +40,7 @@ class BlogController extends Controller {
 	{
 		if(! \Request::get('title')) {
 
-			\Flash::error('Please provide a title.');
+			\Flash::error('Musisz podać tytuł.');
 
 			return \Redirect::back()->withInput();
 
@@ -71,7 +71,7 @@ class BlogController extends Controller {
 
 		$post = $repo->create($slug, $title, $content, $tags, $image, $published);
 
-		\Flash::success('Post created successfully.');
+		\Flash::success('Pomyślnie dodano post.');
 
 		return \Redirect::to('admin/blog');
 
@@ -90,7 +90,7 @@ class BlogController extends Controller {
 
 		if(! \Request::get('title')) {
 
-			\Flash::error('Please provide a title.');
+			\Flash::error('Musisz podać tytuł.');
 
 			return \Redirect::back()->withInput();
 
@@ -130,7 +130,7 @@ class BlogController extends Controller {
 
 		$post->save();	
 
-		\Flash::success('Post edited successfully.');
+		\Flash::success('Pomyślnie edytowano post.');
 
 		return \Redirect::to('admin/blog/'.$slug.'/edit');
 
@@ -148,7 +148,7 @@ class BlogController extends Controller {
 		$post = $repo->post($slug);
 		$post->delete();
 
-		\Flash::success('Post deleted.');
+		\Flash::success('Post usunięty.');
 
 		return \Redirect::to('admin/blog');
 	}

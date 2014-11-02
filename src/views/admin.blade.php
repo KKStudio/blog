@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<h3 class="pull-left">Blog posts</h3>
+	<h3 class="pull-left">Posty na blogu</h3>
 
 	<div class=""> 
 
@@ -11,7 +11,7 @@
 		</a>
 
 		<a href="{{ url('admin/blog/create') }}" style="margin-left: 10px;" class="btn btn-lg btn-success pull-right">
-			Add new post
+			Stwórz nowy post
 		</a>
 
 		{!! Form::open([ 'url' => 'admin/menu/create']) !!}
@@ -20,7 +20,7 @@
 			{!! Form::hidden('route', 'blog') !!}
 			{!! Form::hidden('params', json_encode([])) !!}
 
-			{!! Form::submit('Add to menu', [ 'class' => 'pull-right btn btn-lg btn-warning']) !!}
+			{!! Form::submit('Dodaj do menu', [ 'class' => 'pull-right btn btn-lg btn-warning']) !!}
 
 		{!! Form::close() !!}
 
@@ -30,8 +30,8 @@
 		<table class="table table-striped">
 			<thead>
 				<th>#</th>
-				<th>Title</th>
-				<th>Published</th>
+				<th>Tytuł</th>
+				<th>Opublikowano</th>
 				<th></th>
 				<th></th>
 			</thead>
@@ -42,17 +42,17 @@
 					<td>{{ $post->title }}</td>
 					<td>{{ $post->published }}</td>
 					<td>
-						<a href="{{ url('admin/blog/' . $post->slug . '/edit') }}" class="btn btn-sm btn-primary">edit</a>
+						<a href="{{ url('admin/blog/' . $post->slug . '/edit') }}" class="btn btn-sm btn-primary">edytuj</a>
 					</td>
 					<td>
-						<a href="{{ url('admin/blog/' . $post->slug . '/delete') }}" class="btn btn-sm btn-danger">delete</a>
+						<a href="{{ url('admin/blog/' . $post->slug . '/delete') }}" class="btn btn-sm btn-danger">usuń</a>
 					</td>
 				</tr>
 				@endforeach
 			</tbody>
 		</table>
 		@else
-			<p class="text-muted">No posts found.</p>
+			<p class="text-muted">Brak dodanych postów.</p>
 		@endif
 
 	</div>
