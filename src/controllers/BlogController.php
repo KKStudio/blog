@@ -5,6 +5,13 @@ use Kkstudio\Blog\Repositories\BlogRepository;
 
 class BlogController extends Controller {
 
+	protected $repo;
+
+	public function __construct(BlogRepository $repo) 
+	{
+		$this->repo = $repo;
+	}
+
 	public function index()
 	{
 		$posts = m('Blog')->posts();
@@ -36,7 +43,7 @@ class BlogController extends Controller {
 		return \View::make('blog::create');
 	}
 
-	public function postCreate(BlogRepository $repo) 
+	public function postCreate() 
 	{
 		if(! \Request::get('title')) {
 
@@ -69,7 +76,7 @@ class BlogController extends Controller {
 
 		}
 
-		$post = $repo->create($slug, $title, $content, $tags, $image, $published);
+		$post = $this->repo->create($slug, $title, $content, $tags, $image, $published);
 
 		\Flash::success('Pomyślnie dodano post.');
 
@@ -77,16 +84,16 @@ class BlogController extends Controller {
 
 	}
 
-	public function edit($slug, BlogRepository $repo) 
+	public function edit($slug) 
 	{
-		$post = $repo->post($slug);
+		$post = $this->repo->post($slug);
 
 		return \View::make('blog::edit')->with('post', $post);
 	}
 
-	public function postEdit($slug, BlogRepository $repo) 
+	public function postEdit($slug) 
 	{
-		$post = $repo->post($slug);
+		$post = $this->repo->post($slug);
 
 		if(! \Request::get('title')) {
 
@@ -136,16 +143,16 @@ class BlogController extends Controller {
 
 	}
 
-	public function delete($slug, BlogRepository $repo) 
+	public function delete($slug) 
 	{
-		$post = $repo->post($slug);
+		$post = $this->repo->post($slug);
 
 		return \View::make('blog::delete')->with('post', $post);
 	}
 
-	public function postDelete($slug, BlogRepository $repo) 
+	public function postDelete($slug) 
 	{
-		$post = $repo->post($slug);
+		$post = $this->repo->post($slug);
 		$post->delete();
 
 		\Flash::success('Post usunięty.');
