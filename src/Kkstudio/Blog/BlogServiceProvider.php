@@ -23,7 +23,7 @@ class BlogServiceProvider extends ServiceProvider {
 		\Route::get('blog', '\Kkstudio\Blog\Controllers\BlogController@index');
 		\Route::get('blog/{slug}', '\Kkstudio\Blog\Controllers\BlogController@show');
 
-		\Route::group([ 'prefix' => 'admin', 'middleware' => 'admin'], function() {
+		\Route::group([ 'prefix' => 'admin', 'before' => 'admin'], function() {
 
 			\Route::get('blog', '\Kkstudio\Blog\Controllers\BlogController@admin');
 
