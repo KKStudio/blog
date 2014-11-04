@@ -15,7 +15,7 @@ class BlogController extends Controller {
 
 	public function index()
 	{
-		$posts = m('Blog')->posts();
+		$posts = m('Blog')->all(20);
 
 		return v('blog.index', [ 'posts' => $posts ]);
 	}
