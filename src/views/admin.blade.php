@@ -52,7 +52,7 @@
 			</tbody>
 		</table>
 
-		{!! $post->links() !!}
+		{!! $posts->links() !!}
 		@else
 			<p class="text-muted">Brak dodanych postów.</p>
 		@endif
