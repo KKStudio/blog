@@ -10,7 +10,10 @@ class BlogRepository {
 	{
 		$now = \Carbon\Carbon::now();
 
-		return Post::where('published', '<=', $now->format('Y-m-d H:i:s'))->orderBy('published', 'desc')->paginate(m('Blog')->setting('post-per-page', 10));
+		$postPerPage = m('Blog')->setting('post-per-page', 10);
+		if(!is_numeric($postPerPage)) return \App::abort(500);
+
+		return Post::where('published', '<=', $now->format('Y-m-d H:i:s'))->orderBy('published', 'desc')->paginate($postPerPage);
 	}
 
 	public function post($slug)
