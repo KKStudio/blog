@@ -9,7 +9,7 @@ class BlogController extends Controller {
 
 	public function __construct(BlogRepository $repo) 
 	{
-		if(! m('Blog')->enabled()) return \Redirect::to('404');
+		if(! m('Blog')->enabled()) return \App::abort('404');
 		$this->repo = $repo;
 	}
 
