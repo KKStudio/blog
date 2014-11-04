@@ -29,8 +29,8 @@
 			<h3>{!! Form::label('title', 'Tytuł') !!}</h3>
 			{!! Form::text('title', '', [ 'class' => 'form-control' ]) !!}
 
-			<h3>{!! Form::label('category', 'Kategoria') !!}</h3>
-			{!! Form::select('category', m('Blog')->categoriesArray(), '', [ 'class' => 'form-control' ]) !!}
+			<h3>{!! Form::label('category_id', 'Kategoria') !!}</h3>
+			{!! Form::select('category_id', m('Blog')->categoriesArray(), '', [ 'class' => 'form-control' ]) !!}
 
 			<h3>{!! Form::label('content', 'Treść') !!}</h3>
 			{!! Form::textarea('content', '', [ 'class' => 'editor form-control', 'rows' => 10 ]) !!}
