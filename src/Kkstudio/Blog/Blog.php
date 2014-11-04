@@ -29,5 +29,16 @@ class Blog extends \App\Module {
 
 		return $categories;
 	}
+
+	public function categoriesArray() 
+	{
+		$categories = $this->repo->categories();
+
+		$categories_arr = [ '0' => 'Brak' ];
+
+		foreach ($categories as $key => $category) {
+			$categories_arr[$category->id] => $category->name;
+		}
+	}
 	
 }

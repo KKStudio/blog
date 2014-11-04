@@ -24,7 +24,7 @@
 
 		{!! Form::close() !!}
 
-		<a href="{{ url('admin/blog/categories') }}" style="margin-left: 10px;" class="btn btn-lg btn-primary pull-right">
+		<a href="{{ url('admin/blog/categories') }}" style="margin-right: 10px;" class="btn btn-lg btn-primary pull-right">
 			Kategorie
 		</a>
 
@@ -35,6 +35,7 @@
 			<thead>
 				<th>#</th>
 				<th>Tytuł</th>
+				<th>Kategoria</th>
 				<th>Opublikowano</th>
 				<th></th>
 				<th></th>
@@ -44,6 +45,7 @@
 				<tr>
 					<td>{{ $post->id }}</td>
 					<td>{{ $post->title }}</td>
+					<td>@if($post->category) {{ $post->category->name }} @else - @endif</td>
 					<td>{{ $post->published }}</td>
 					<td>
 						<a href="{{ url('admin/blog/' . $post->slug . '/edit') }}" class="btn btn-sm btn-primary">edytuj</a>

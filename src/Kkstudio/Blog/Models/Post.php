@@ -28,4 +28,9 @@ class Post extends Eloquent {
 
 	}
 
+	public function category()
+	{
+		return $this->belongsTo('\Kkstudio\Blog\Models\Category', 'category_id', 'id');
+	}
+
 }

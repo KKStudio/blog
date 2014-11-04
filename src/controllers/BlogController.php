@@ -29,6 +29,14 @@ class BlogController extends Controller {
 		return v('blog.show', [ 'post' => $post ]);
 	}
 
+	public function fromCategory($slug)
+	{
+		$posts = $this->repo->fromCategory($slug);
+
+		return v('blog.index', [ 'posts' => $posts, 'currentCategory' => $slug ]);
+
+	}
+
 	// Administration
 
 	public function admin()
@@ -58,6 +66,7 @@ class BlogController extends Controller {
 		$slug = \Carbon\Carbon::now()->format('Y-m') . '-' . \Str::random(6) . '-' . \Str::slug($title);
 		$content = \Request::get('content');
 		$tags = \Request::get('tags');
+		$category_id = \Request::get('category_id');
 		$published = \Carbon\Carbon::now()->format('Y-m-d H:i:s');
 		$image = '';
 
@@ -77,7 +86,7 @@ class BlogController extends Controller {
 
 		}
 
-		$post = $this->repo->create($slug, $title, $content, $tags, $image, $published);
+		$post = $this->repo->create($slug, $title, $content, $tags, $image, $published, $category_id);
 
 		\Flash::success('Pomyślnie dodano post.');
 
@@ -105,6 +114,7 @@ class BlogController extends Controller {
 		}
 
 		$title = \Request::get('title');
+		$category_id = \Request::get('category_id');
 		$content = \Request::get('content');
 		$tags = \Request::get('tags');
 
@@ -134,6 +144,7 @@ class BlogController extends Controller {
 		}
 
 		$post->content = $content;	
+		$post->category_id = $category_id;	
 		$post->tags = $tags;	
 
 		$post->save();	

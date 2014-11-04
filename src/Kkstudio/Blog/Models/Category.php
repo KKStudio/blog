@@ -11,4 +11,9 @@ class Category extends Eloquent {
 
 	protected $guarded = [ 'id' ];
 
+	public function posts()
+	{
+		return $this->hasMany('\Kkstudio\Blog\Models\Post', 'category_id', 'id');
+	}
+
 }

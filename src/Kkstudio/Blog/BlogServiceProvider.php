@@ -21,6 +21,7 @@ class BlogServiceProvider extends ServiceProvider {
 		$this->package('kkstudio/blog');
 
 		\Route::get('blog', '\Kkstudio\Blog\Controllers\BlogController@index');
+		\Route::get('blog/category/{$slug}', '\Kkstudio\Blog\Controllers\BlogController@fromCategory');
 		\Route::get('blog/{slug}', '\Kkstudio\Blog\Controllers\BlogController@show');
 
 		\Route::group([ 'prefix' => 'admin', 'before' => 'admin'], function() {

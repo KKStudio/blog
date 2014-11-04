@@ -29,6 +29,9 @@
 
 			<h3>{!! Form::label('title', 'Tytuł') !!}</h3>
 			{!! Form::text('title', $post->title, [ 'class' => 'form-control' ]) !!}
+			
+			<h3>{!! Form::label('category', 'Kategoria') !!}</h3>
+			{!! Form::select('category', m('Blog')->categoriesArray(), $post->category_id, [ 'class' => 'form-control' ]) !!}
 
 			<h3>{!! Form::label('content', 'Treść') !!}</h3>
 			{!! Form::textarea('content', $post->content, [ 'class' => 'editor form-control', 'rows' => 10 ]) !!}

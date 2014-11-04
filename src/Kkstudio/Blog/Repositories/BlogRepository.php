@@ -13,29 +13,37 @@ class BlogRepository {
 		$postPerPage = m('Blog')->setting('post-per-page', 10);
 		if(!is_numeric($postPerPage)) return \App::abort(500);
 
-		return Post::where('published', '<=', $now->format('Y-m-d H:i:s'))->orderBy('published', 'desc')->paginate($postPerPage);
+		return Post::with('category')->where('published', '<=', $now->format('Y-m-d H:i:s'))->orderBy('published', 'desc')->paginate($postPerPage);
+	}
+
+	public function postsFromCategory($slug)
+	{
+		$category = Category::where('slug', $slug)->with('posts')->first();
+
+		return $category->posts;
 	}
 
 	public function all($per_page) 
 	{
 
-		return Post::orderBy('published', 'desc')->paginate($per_page);
+		return Post::with('category')->orderBy('published', 'desc')->paginate($per_page);
 	}
 
 	public function post($slug)
 	{
-		$post = Post::where('slug', $slug)->first();
+		$post = Post::with('category')->where('slug', $slug)->first();
 
 		return $post;
 	}
 
-	public function create($slug, $title, $content, $tags, $image, $published)
+	public function create($slug, $title, $content, $tags, $image, $published, $category_id)
 	{
 		return Post::create([
 
 			'slug' => $slug,
 			'title' => $title,
 			'content' => $content,
+			'category_id' => $category_id,
 			'tags' => $tags,
 			'image' => $image,
 			'published' => $published
