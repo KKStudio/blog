@@ -15,7 +15,7 @@ class BlogController extends Controller {
 
 	public function index()
 	{
-		$posts = $this->repo->all(20);
+		$posts = $this->repo->posts();
 
 		return v('blog.index', [ 'posts' => $posts ]);
 	}
@@ -33,7 +33,7 @@ class BlogController extends Controller {
 
 	public function admin()
 	{
-		$posts = $this->repo->posts();
+		$posts = $this->repo->all(20);
 
 		return \View::make('blog::admin')->with('posts', $posts);
 	}
