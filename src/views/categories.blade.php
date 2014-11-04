@@ -20,6 +20,7 @@
 				<th>Slug</th>
 				<th></th>
 				<th></th>
+				<th></th>
 				<th>wyżej</th>
 				<th>niżej</th>
 			</thead>
@@ -29,6 +30,21 @@
 					<td>{{ $c->id }}</td>
 					<td>{{ $c->name }}</td>
 					<td>{{ $c->slug }}</td>
+					<td>
+
+
+						{!! Form::open([ 'url' => 'admin/menu/create']) !!}
+
+							{!! Form::hidden('display_name', $c->name) !!}
+							{!! Form::hidden('route', 'blog/category/{$slug}') !!}
+							{!! Form::hidden('params', json_encode(['slug' => $c->slug])) !!}
+
+							{!! Form::submit('Dodaj do menu', [ 'class' => 'pull-right btn btn-sm btn-warning']) !!}
+
+						{!! Form::close() !!}
+
+
+					</td>
 					<td>
 						<a href="{{ url('admin/blog/categories/' . $c->slug . '/edit') }}" class="btn btn-sm btn-primary">edytuj</a>
 					</td>
