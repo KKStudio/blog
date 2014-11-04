@@ -39,6 +39,8 @@ class Blog extends \App\Module {
 		foreach ($categories as $key => $category) {
 			$categories_arr[$category->id] = $category->name;
 		}
+
+		return $categories_arr;
 	}
 	
 }
