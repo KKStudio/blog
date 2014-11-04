@@ -18,7 +18,18 @@ class BlogRepository {
 
 	public function postsFromCategory($slug)
 	{
-		$category = Category::where('slug', $slug)->with('posts')->first();
+
+		$category = Category::where('slug', $slug)->with(['posts' => function($query) {
+
+			$postPerPage = m('Blog')->setting('post-per-page', 10);
+			if(!is_numeric($postPerPage)) return \App::abort(500);
+		
+			$now = \Carbon\Carbon::now();
+
+			$query->where('published', '<=', $now->format('Y-m-d H:i:s'))
+			->orderBy('published', 'desc')->paginate($postPerPage);
+
+		}])->first();
 
 		return $category->posts;
 	}
