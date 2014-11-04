@@ -43,4 +43,45 @@ class BlogRepository {
 		]);
 	}
 
+	public function categories() 
+	{
+		return Category::orderBy('position')->get();
+	}
+
+	public function category($slug) 
+	{
+		return Category::where('slug', $slug)->first();
+	}
+
+	public function categoryById($id) 
+	{
+		return Category::findOrFail($id);
+	}
+
+	public function categoryCreate($name, $slug)
+	{
+
+		$position = $this->max() + 1;
+
+		return Category::create([
+
+			'slug' => $slug,
+			'name' => $name,
+			'position' => $position
+
+		]);
+
+	}
+
+	public function max() {
+
+		$position = 0;
+
+		$max = Category::orderBy('position', 'desc')->first();
+		if($max) $position = $max->position;
+
+		return $position;
+
+	}
+
 }

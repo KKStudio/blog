@@ -24,6 +24,10 @@
 
 		{!! Form::close() !!}
 
+		<a href="{{ url('admin/blog/categories') }}" style="margin-left: 10px;" class="btn btn-lg btn-primary pull-right">
+			Kategorie
+		</a>
+
 		<div class="clearfix"></div>
 		@if(count($posts))
 

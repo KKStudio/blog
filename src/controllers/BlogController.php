@@ -161,4 +161,124 @@ class BlogController extends Controller {
 		return \Redirect::to('admin/blog');
 	}
 
+	// Categories
+
+	public function categories()
+	{
+		$categories = $this->repo->categories();
+
+		return \View::make('blog::categories')->with('categories', $categories);
+	}
+
+	public function category_create() 
+	{
+		return \View::make('blog::category_create');
+	}
+
+	public function category_postCreate() 
+	{
+		if(! \Request::get('name')) {
+
+			\Flash::error('Musisz podać nazwę.');
+
+			return \Redirect::back()->withInput();
+
+		}
+
+		$name = \Request::get('name');
+		$slug = \Str::slug($name);
+
+		$exists = $this->repo->category($slug);
+
+		if($exists) {
+
+			\Flash::error('Kategoria z tą nazwą już istnieje.');
+
+			return \Redirect::back()->withInput();
+
+		}
+
+		$this->repo->categoryCreate($name, $slug);
+
+		\Flash::success('Kategoria dodana pomyślnie.');
+
+		return \Redirect::to('admin/blog/categories');
+	}
+
+	public function category_edit($slug) 
+	{
+		$item = $this->repo->category($slug);
+
+		return \View::make('blog::category')->with('category', $item);
+	}
+
+	public function category_postEdit($slug) 
+	{
+		$item = $this->repo->category($slug);
+
+		if(! \Request::get('name')) {
+
+			\Flash::error('Musisz podać nazwę.');
+
+			return \Redirect::back()->withInput();
+
+		}
+
+		$name = \Request::get('name');
+		$slug = \Str::slug($name);
+
+		$exists = $this->repo->category($slug);
+
+		if($exists && $exists->id != $item->id) {
+
+			\Flash::error('Kategoria z tą nazwą już istnieje.');
+
+			return \Redirect::back()->withInput();
+
+		}
+
+		$item->name = $name;
+		$item->slug = $slug;
+
+		$item->save();	
+
+		\Flash::success('Kategoria edytowana pomyślnie.');
+
+		return \Redirect::back();
+
+	}
+
+	public function category_delete($slug) 
+	{
+		$item = $this->repo->category($slug);
+
+		return \View::make('blog::category_delete')->with('category', $item);
+	}
+
+	public function category_postDelete($slug) 
+	{
+		$item = $this->repo->category($slug);
+		$item->delete();
+
+		\Flash::success('Kategoria została usunięta.');
+
+		return \Redirect::to('admin/blog/categories');
+	}
+
+	public function category_swap() {
+
+		$id1 = \Request::get('id1');
+		$id2 = \Request::get('id2');
+
+		$first = $this->repo->categoryById($id1);
+		$second = $this->repo->categoryById($id2);
+
+		$first->moveAfter($second);
+
+		\Flash::success('Posortowano.');
+
+		return \Redirect::back();
+
+	}
+
 }

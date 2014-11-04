@@ -22,5 +22,12 @@ class Blog extends \App\Module {
 
 		return $post;
 	}
+
+	public function categories() 
+	{
+		$categories = $this->repo->categories();
+
+		return $categories;
+	}
 	
 }

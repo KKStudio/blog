@@ -35,7 +35,21 @@ class BlogServiceProvider extends ServiceProvider {
 
 			\Route::get('blog/{slug}/delete', '\Kkstudio\Blog\Controllers\BlogController@delete');
 			\Route::post('blog/{slug}/delete', '\Kkstudio\Blog\Controllers\BlogController@postDelete');
+				
+			// Categories
+
+			\Route::get('blog/categories', '\Kkstudio\Blog\Controllers\BlogController@categories');
+			\Route::get('blog/categories/create', '\Kkstudio\Blog\Controllers\BlogController@category_create');
+			\Route::post('blog/categories/create', '\Kkstudio\Blog\Controllers\BlogController@category_postCreate');
+
+			\Route::get('blog/categories/{slug}/edit', '\Kkstudio\Blog\Controllers\BlogController@category_edit');
+			\Route::post('blog/categories/{slug}/edit', '\Kkstudio\Blog\Controllers\BlogController@category_postEdit');
+
+			\Route::get('blog/categories/{slug}/delete', '\Kkstudio\Blog\Controllers\BlogController@category_delete');
+			\Route::post('blog/categories/{slug}/delete', '\Kkstudio\Blog\Controllers\BlogController@category_postDelete');
 			
+			\Route::post('blog/categories/swap', '\Kkstudio\Blog\Controllers\BlogController@category_swap');
+
 
 		});
 	}
