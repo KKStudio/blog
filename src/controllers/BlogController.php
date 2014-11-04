@@ -15,14 +15,14 @@ class BlogController extends Controller {
 
 	public function index()
 	{
-		$posts = m('Blog')->all(20);
+		$posts = $this->repo->all(20);
 
 		return v('blog.index', [ 'posts' => $posts ]);
 	}
 
 	public function show($slug)
 	{
-		$post = m('Blog')->post($slug);
+		$post = $this->repo->post($slug);
 
 		if(!$post) return \Redirect::to('/');
 
@@ -33,7 +33,7 @@ class BlogController extends Controller {
 
 	public function admin()
 	{
-		$posts = m('Blog')->posts();
+		$posts = $this->repo->posts();
 
 		return \View::make('blog::admin')->with('posts', $posts);
 	}
