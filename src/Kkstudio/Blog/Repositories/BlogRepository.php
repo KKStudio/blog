@@ -16,6 +16,16 @@ class BlogRepository {
 		return Post::with('category')->where('published', '<=', $now->format('Y-m-d H:i:s'))->orderBy('published', 'desc')->paginate($postPerPage);
 	}
 
+	public function last() 
+	{
+		$now = \Carbon\Carbon::now();
+
+		$postNumber = m('Blog')->setting('last-posts-quantity', 5);
+		if(!is_numeric($postNumber)) return \App::abort(500);
+
+		return Post::with('category')->where('published', '<=', $now->format('Y-m-d H:i:s'))->orderBy('published', 'desc')->take($postNumber)->get();
+	}
+
 	public function postsFromCategory($slug)
 	{
 

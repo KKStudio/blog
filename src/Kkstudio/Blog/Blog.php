@@ -16,6 +16,13 @@ class Blog extends \App\Module {
 		return $posts;
 	}
 
+	public function last() 
+	{
+		$posts = $this->repo->last();
+
+		return $posts;
+	}
+
 	public function post($slug) 
 	{
 		$post = $this->repo->post($slug);
