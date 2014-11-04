@@ -31,7 +31,7 @@ class BlogController extends Controller {
 
 	public function fromCategory($slug)
 	{
-		$posts = $this->repo->fromCategory($slug);
+		$posts = $this->repo->postsFromCategory($slug);
 
 		return v('blog.index', [ 'posts' => $posts, 'currentCategory' => $slug ]);
 
